@@ -7,6 +7,7 @@ var logger = require("morgan");
 // Play spotify script setup
 const shell = require("shelljs");
 const pathToPlaySpotify = "osascript play_spotify.scpt";
+const pathToStopSpotify = "osascript stop_spotify.scpt";
 
 var indexRouter = require("./routes/index");
 
@@ -31,6 +32,19 @@ app.get("/playRocky", function(req, res) {
   // Execute apple script "play_spotify" which triggers Spotify
   if (shell.exec(pathToPlaySpotify).code == 0) {
     console.log("Playing rocky");
+    res.send("ADRIAN!");
+  } else {
+    shell.exit(1);
+    res.send("An error occured playing the script.");
+  }
+});
+// Route addressed by arduino to play song
+app.get("/stopRocky", function(req, res) {
+  console.log("Attempting to play Rocky");
+
+  // Execute apple script "play_spotify" which triggers Spotify
+  if (shell.exec(pathToStopSpotify).code == 0) {
+    console.log("Stopping rocky");
     res.send("ADRIAN!");
   } else {
     shell.exit(1);
