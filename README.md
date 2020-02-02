@@ -1,4 +1,5 @@
 # Climbing stairs...Rocky-style! - Beat Steps Demo
+#### Caution: The file that is run on the Arudino IDE is the 'CapacitiveSensorBeatSteps_final' - Every other .ino files in this repository are  previous versions of our testing phases saved for documentation purposes.
 
 ## Demo description
 
@@ -42,6 +43,8 @@ npm install -g nodemon
 
 ### Get it running
 
+#### Caution: The file that is run on the Arudino IDE is the "CapacitiveSensorBeatSteps_final" - Every other .ino files in this repository are  previous versions of our testing phases saved for documentation purposes.
+
 A step by step series of examples that tell you how to get a development env running.
 
 This is the command to start your server (automatic ). Type this in the terminal of this backend repository.
@@ -49,3 +52,9 @@ This is the command to start your server (automatic ). Type this in the terminal
 ```sh
 nodemon start
 ```
+
+## The Final Code Setup for the Demo
+
+For the setup of the demo you additionally need a phone hotspot ('Klaudias iPhone') and a Spotify Account.
+
+To get the demo running, you have to connect your computer to the hotspot of the demo, as here referred to 'Klaudias iPhone'. Additionally, you have to start the backend server in order to answer the requests and play the music. For doing so, you open the file 'StartRockyServer.scpt' which automatically runs a script that opens all relevant files and runs all relevant commands. The you open the 'CapacitiveSensorBeatSteps_final' file in your Arduino IDE and load it onto your Prototype. Once upload is finished you can check the Monitor if the connection setup is done. Once it's connected, the counter starts to show up and you can start stepping! 
