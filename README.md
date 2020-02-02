@@ -7,6 +7,14 @@ Kaiser, Tim, Matr.-Nr.: 11103257
 Kloss, Isabell, Matr.-Nr.: 12100857
 Schulze-König, Matthias, Matr.-Nr.: 11317181
 
+
+| Contributor | Matr.Nr.   |
+| ------------- |:-------------:|
+| Guzij, Klaudia                      | 11907448 |
+| Schulze-König, Matthias     | 11103257 |
+| Kaiser, Tim                           | 12100857 |
+| Kloss, Isabell                       | 11317181 | 
+
 #### Caution: The file that is run on the Arudino IDE is the 'CapacitiveSensorBeatSteps_final' - Every other .ino files in this repository are  previous versions of our testing phases saved for documentation purposes.
 
 ## Demo description
