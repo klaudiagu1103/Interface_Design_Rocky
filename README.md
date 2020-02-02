@@ -5,9 +5,9 @@
 | Contributor | Matr.Nr.   |
 | ------------- |:-------------:|
 | Guzij, Klaudia                      | 11907448 |
-| Schulze-König, Matthias     | 11103257 |
-| Kaiser, Tim                           | 12100857 |
-| Kloss, Isabell                       | 11317181 | 
+| Schulze-König, Matthias     | 11317181 |
+| Kaiser, Tim                           | 11103257 |
+| Kloss, Isabell                       | 12100857 | 
 
 
 
