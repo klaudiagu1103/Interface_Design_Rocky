@@ -1,12 +1,6 @@
 # Climbing stairs...Rocky-style! - Beat Steps Demo
 
-Contributors:
-
-Guzij, Klaudia, Matr.-Nr.: 11907448
-Kaiser, Tim, Matr.-Nr.: 11103257
-Kloss, Isabell, Matr.-Nr.: 12100857
-Schulze-König, Matthias, Matr.-Nr.: 11317181
-
+####  Contributors:
 
 | Contributor | Matr.Nr.   |
 | ------------- |:-------------:|
