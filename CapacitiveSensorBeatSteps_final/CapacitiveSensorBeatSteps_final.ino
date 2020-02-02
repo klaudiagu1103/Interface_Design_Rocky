@@ -11,7 +11,7 @@ WiFiClient client;
    Receive pin is the sensor pin - try different amounts of foil/metal on this pin
 */
 
-// Wifi credentials
+// Wifi credentials - need to connect both the computer and the Arudino to WIFI Hotspot
 const char* ssid     = "Klaudias iPhone";
 const char* password = "19971997";
 // Server
@@ -19,8 +19,8 @@ const char* host = "172.20.10.11";
 const int httpPort = 3000;
 
 
-CapacitiveSensor   cs_unten_rechts = CapacitiveSensor(5,4);       // 10M resistor between pins 4 & 2, pin 2 is sensor pin, add a wire and or foil if desired
-CapacitiveSensor   cs_unten_links = CapacitiveSensor(5,2);
+CapacitiveSensor   cs_unten_rechts = CapacitiveSensor(5,4);       // 10M resistor between pins 5 & 4, pin 5 is sensor pin
+//CapacitiveSensor   cs_unten_links = CapacitiveSensor(5,2);      // Additional Pins for running the demo on (total) 4 capacitive sensors
 //CapacitiveSensor   cs_oben_rechts = CapacitiveSensor(5,0);
 //CapacitiveSensor   cs_oben_links = CapacitiveSensor(5,2);
 int count = 0;
@@ -55,7 +55,7 @@ void setup()
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   cs_unten_rechts.set_CS_AutocaL_Millis(0xFFFFFFFF);     // turn off autocalibrate on channel 1 - just as an example
-  cs_unten_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
+ // cs_unten_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
  // cs_oben_rechts.set_CS_AutocaL_Millis(0xFFFFFFFF);
  // cs_oben_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
 
@@ -73,17 +73,17 @@ void loop()
   long total_unten_links = 0;// cs_unten_links.capacitiveSensor(30);
   long total_oben_rechts = 0; //cs_oben_rechts.capacitiveSensor(30);
   long total_oben_links = 0; //cs_oben_links.capacitiveSensor(30);
-  if (capacitorPressed (total_unten_rechts, &pressed_unten_rechts)
+  if (capacitorPressed (total_unten_rechts, &pressed_unten_rechts)      // If pressed, then run script
        || capacitorPressed (total_unten_links, &pressed_unten_links)
       //|| capacitorPressed (total_oben_rechts, &pressed_oben_rechts)
       //|| capacitorPressed (total_oben_links, &pressed_oben_links)
       )
   {
-    count++;
+    count++;                                                            // Set counter on +1 every time the capacitive sensor is pressed
     sendRequest(false);
   }
 
-  if (count > 5)
+  if (count > 5)                                                       // If counter is at 5, Light No. 1 gets on
   {
     digitalWrite(ledA, HIGH);
   }
@@ -92,7 +92,7 @@ void loop()
     digitalWrite(ledA, LOW);
   }
 
-  if (count > 7)
+  if (count > 7)                                                       // If counter is at 7, Light No. 2 gets on
   {
     digitalWrite(ledB, HIGH);
   }
@@ -101,7 +101,7 @@ void loop()
     digitalWrite(ledB, LOW);
   }
 
-  if (count > 9)
+  if (count > 9)                                                      // If counter is at 9, Light No. 3 gets on
   {
     digitalWrite(ledC, HIGH);
   }
@@ -110,7 +110,7 @@ void loop()
     digitalWrite(ledC, LOW);
   }
 
-  if (count > 11)
+  if (count > 11)                                                   // If counter is at 11, Light No. 4 gets on
   {
     digitalWrite(ledD, HIGH);
   }
@@ -119,7 +119,7 @@ void loop()
     digitalWrite(ledD, LOW);
   }
 
-  if (count > 13)
+  if (count > 13)                                                   // If counter is at 5, Light No. 5 gets on
   {
     digitalWrite(ledE, HIGH);
   }
@@ -135,10 +135,10 @@ void loop()
   Serial.print("\t");
   Serial.println(pressed_unten_rechts);
 
-  delay(100);                             // arbitrary delay to limit data to serial port
+  delay(100);                                                      // arbitrary delay to limit data to serial port
 }
 
-boolean capacitorPressed (long total, boolean *cs_pressed)
+boolean capacitorPressed (long total, boolean *cs_pressed)        // Booblean function to check whether a sensor is pressed
 {
   if (total > 50)
   {
@@ -155,8 +155,7 @@ boolean capacitorPressed (long total, boolean *cs_pressed)
   return false;
 }
 
-void sendRequest (bool stopSong)
-{
+void sendRequest (bool stopSong)                              // If sensor is not pressed, the script that stops the song is run
   // Use WiFiClient class to connection
   if (!client.connect(host, httpPort)) {
     Serial.println("connection failed");
@@ -169,11 +168,11 @@ void sendRequest (bool stopSong)
     url = "/stopRocky";
   }
   else {
-    url = "/playRocky";
+    url = "/playRocky";                                      // PlayRocky refers to the Apple script that starts the song on Spotify
 
   }
 
-  Serial.print("Requesting URL: ");
+  Serial.print("Requesting URL: ");                         // Print connection
   Serial.println(url);
   // Send the request to the server
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
