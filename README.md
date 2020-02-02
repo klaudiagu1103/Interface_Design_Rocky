@@ -17,7 +17,7 @@ The two breadboards with the NodeMCU and the LED Lights are connected through ju
 
 Here is a picture how the demo looks like before it was integrated into the physical demo:
 
-![Alt text](./rawmaterial_demo.jpeg "Title")
+![Demo_rawmaterial](Demo_rawmaterial.jpeg)
 
 
 ## First: Install all packages
