@@ -19,7 +19,7 @@ const char* host = "172.20.10.11";
 const int httpPort = 3000;
 
 
-CapacitiveSensor   cs_unten_rechts = CapacitiveSensor(5,4);       // 10M resistor between pins 5 & 4, pin 5 is sensor pin
+CapacitiveSensor   cs_unten_rechts = CapacitiveSensor(5, 4);      // 10M resistor between pins 5 & 4, pin 5 is sensor pin
 //CapacitiveSensor   cs_unten_links = CapacitiveSensor(5,2);      // Additional Pins for running the demo on (total) 4 capacitive sensors
 //CapacitiveSensor   cs_oben_rechts = CapacitiveSensor(5,0);
 //CapacitiveSensor   cs_oben_links = CapacitiveSensor(5,2);
@@ -55,9 +55,9 @@ void setup()
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   cs_unten_rechts.set_CS_AutocaL_Millis(0xFFFFFFFF);     // turn off autocalibrate on channel 1 - just as an example
- // cs_unten_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
- // cs_oben_rechts.set_CS_AutocaL_Millis(0xFFFFFFFF);
- // cs_oben_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
+  // cs_unten_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
+  // cs_oben_rechts.set_CS_AutocaL_Millis(0xFFFFFFFF);
+  // cs_oben_links.set_CS_AutocaL_Millis(0xFFFFFFFF);
 
   pinMode(ledA, OUTPUT);
   pinMode(ledB, OUTPUT);
@@ -74,16 +74,16 @@ void loop()
   long total_oben_rechts = 0; //cs_oben_rechts.capacitiveSensor(30);
   long total_oben_links = 0; //cs_oben_links.capacitiveSensor(30);
   if (capacitorPressed (total_unten_rechts, &pressed_unten_rechts)      // If pressed, then run script
-       || capacitorPressed (total_unten_links, &pressed_unten_links)
+      || capacitorPressed (total_unten_links, &pressed_unten_links)
       //|| capacitorPressed (total_oben_rechts, &pressed_oben_rechts)
       //|| capacitorPressed (total_oben_links, &pressed_oben_links)
-      )
+     )
   {
     count++;                                                            // Set counter on +1 every time the capacitive sensor is pressed
     sendRequest(false);
   }
 
-  if (count > 5)                                                       // If counter is at 5, Light No. 1 gets on
+  if (count > 1)                                                       // If counter is at 1, Light No. 1 gets on - Light is triggered immediately after the user steps on the stairs
   {
     digitalWrite(ledA, HIGH);
   }
@@ -155,27 +155,29 @@ boolean capacitorPressed (long total, boolean *cs_pressed)        // Booblean fu
   return false;
 }
 
-void sendRequest (bool stopSong)                              // If sensor is not pressed, the script that stops the song is run
-  // Use WiFiClient class to connection
-  if (!client.connect(host, httpPort)) {
-    Serial.println("connection failed");
-    return;
-  }
-  String url;
+void sendRequest (bool stopSong)            // If sensor is not pressed, the script that stops the song is run
+{
+  
+// Use WiFiClient class to connection
+if (!client.connect(host, httpPort)) {
+  Serial.println("connection failed");
+  return;
+}
+String url;
 
-  if (stopSong)
-  {
-    url = "/stopRocky";
-  }
-  else {
-    url = "/playRocky";                                      // PlayRocky refers to the Apple script that starts the song on Spotify
+if (stopSong)
+{
+  url = "/stopRocky";
+}
+else {
+  url = "/playRocky";                                      // PlayRocky refers to the Apple script that starts the song on Spotify
 
-  }
+}
 
-  Serial.print("Requesting URL: ");                         // Print connection
-  Serial.println(url);
-  // Send the request to the server
-  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" +
-               "Connection: close\r\n\r\n");
+Serial.print("Requesting URL: ");                         // Print connection
+Serial.println(url);
+// Send the request to the server
+client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+             "Host: " + host + "\r\n" +
+             "Connection: close\r\n\r\n");
 }
