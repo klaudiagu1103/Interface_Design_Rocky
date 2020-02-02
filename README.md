@@ -9,11 +9,14 @@
 | Kaiser, Tim                           | 12100857 |
 | Kloss, Isabell                       | 11317181 | 
 
-#### Caution: The file that is run on the Arudino IDE is the 'CapacitiveSensorBeatSteps_final' - Every other .ino files in this repository are  previous versions of our testing phases saved for documentation purposes.
+
 
 ## Demo description
 
 This is the repository for the 'Beat Steps' prototype built in the Interface Design course WS19/20.
+
+#### Caution: 
+The file that is run on the Arudino IDE is the 'CapacitiveSensorBeatSteps_final' - Every other .ino files in this repository are  previous versions of our testing phases saved for documentation purposes.
 
 ### The idea
 Two interactive steps, with two touch sensor plates each, that play a song when you step on them. The faster the user goes, the more beats per second are playing until the song is finished. Thereby, the steps provide the option for a small workout implemented at the stairs next to the Bavaria Statue. Our goal was to motivate people passing by to actually increase their interactivity and level of engagement outdoors, while being mindful i.e. aware of their environment. Besides the user, “Beat Steps” also attracts bystanders and, hence, increases the sense of community. Also, through the word of mouth “Beat Steps” can actually become a workout destination for people who usually do sports outdoors. This is how we want to increase the attractiveness of the area around the Bavaria Statue.
